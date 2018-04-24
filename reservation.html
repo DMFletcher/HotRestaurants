@@ -40,20 +40,20 @@
         
                       <div class="form-group">
                         <label for="role">Phone Number</label>
-                        <input type="text" class="form-control" id="role">
+                        <input type="text" class="form-control" id="phone_number">
                       </div>
         
                       <div class="form-group">
                         <label for="age">Email</label>
-                        <input type="text" class="form-control" id="age">
+                        <input type="text" class="form-control" id="Email">
                       </div>
         
                       <div class="form-group">
                         <label for="force-points">Unique ID</label>
-                        <input type="text" class="form-control" id="force-points">
+                        <input type="text" class="form-control" id="unique_id">
                       </div>
                       <a href="/view">
-                        <button class="btn btn-danger btn-lg btn-view">
+                        <button class="btn btn-danger btn-lg btn-view" id= "submit">
                             <span></span> Submit</button>
                     </a>
                     </form>
@@ -63,6 +63,25 @@
         <a>API Wait List</a>
     </footer>
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript">
+      // Question: What does this code do?
+      $("#submit").on("click", function(event) {
+        event.preventDefault();
+        var newReservation = {
+          name: $("#name").val().trim(),
+          phone_number: $("#phone_number").val().trim(),
+          email: $("#email").val().trim(),
+          unique_id: $("#unique_id").val().trim()
+        };
+
+        $.post("/api/reservation", newReservation)
+          .then(function(data) {
+            console.log(data);
+          })
+  
+        // Question: What does this code do??
+      });
+    </script>
 </body>
 
 </html>
